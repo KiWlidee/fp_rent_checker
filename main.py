@@ -123,7 +123,7 @@ def find_product_info(name: str, soup: BeautifulSoup) -> str:
 
 
 if __name__  == "__main__":
-    logger.add("debug.log", level="INFO")
+    # logger.add("debug.log", level="INFO")
 
     name = input("Введите полное название игры: ").strip()
     name = name.replace(" ", "-")
@@ -133,14 +133,18 @@ if __name__  == "__main__":
     if soup[0] != "Cannot connect to link":
         status = find_product_info(name, soup)
         if status[0] != "❌ Аккаунт занят":
-            time = int(input("Введите колличество дней аренды (7/14/21/28): "))
+            time = int(input("Введите колличество дней аренды (0/7/14/21/28): "))
             if time == 7 or time == 14 or time == 21 or time == 28:
                 print(buy_account(status[1], time))
             elif time == 0:
                 logger.debug("Прекратил работу")
+                input("Нажмите Enter...")
             else:
                 print(f"Вы неправильно ввели колличество дней аренды: {time}")
+                input("Нажмите Enter...")
         else:
             print("❌ Аккаунт занят")
+            input("Нажмите Enter...")
     else:
         print(f"⚠️  Не удалось открыть ссылку: {soup[1]}")
+        input("Нажмите Enter...")
