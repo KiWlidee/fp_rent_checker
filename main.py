@@ -136,6 +136,8 @@ if __name__  == "__main__":
             time = int(input("Введите колличество дней аренды (7/14/21/28): "))
             if time == 7 or time == 14 or time == 21 or time == 28:
                 print(buy_account(status[1], time))
+            elif time == 0:
+                logger.debug("Прекратил работу")
             else:
                 print(f"Вы неправильно ввели колличество дней аренды: {time}")
         else:
